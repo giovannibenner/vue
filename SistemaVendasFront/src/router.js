@@ -11,6 +11,10 @@ const routes = [
     {
         path: "/vendedor/cadastrar",
         component: () => import("./components/Vendedor/Cadastrar.vue")
+    },
+    {
+        path: "/vendedor/:id",
+        component: () => import("./components/Vendedor/Atualizar.vue")
     }
 ];
 const router = createRouter({
