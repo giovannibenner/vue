@@ -5,7 +5,7 @@
         <div class="col-4">
             <div>
                 <label class="form-label">Data</label>
-                <input type="text" required v-model="pedido.data" class="form-control" placeholder="data">
+                <input type="datetime-local" required v-model="pedido.data" class="form-control" placeholder="data">
             </div>
             <div>
                 <label class="form-label">VendedorId</label>
@@ -26,7 +26,7 @@ export default {
     data() {
         return {
             pedido: { 
-                data: new Date().toISOString().slice(0, 10),
+                data: '',
                 vendedorId: '',
                 clienteId: ''
             }
