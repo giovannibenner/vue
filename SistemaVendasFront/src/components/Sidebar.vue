@@ -22,8 +22,8 @@
         </button>
         <div class="collapse" id="cliente-collapse">
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-            <li><a href="#" class="link-dark rounded">Listar</a></li>
-            <li><a href="#" class="link-dark rounded">Cadastrar</a></li>
+            <li><a href="/cliente/listar" class="link-dark rounded">Listar</a></li>
+            <li><a href="/cliente/cadastrar" class="link-dark rounded">Cadastrar</a></li>
           </ul>
         </div>
       </li>
