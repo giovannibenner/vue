@@ -24,6 +24,7 @@
                 <td>
                     <button class="btn btn-success" @click="editarPedido(pedido.id)">Editar</button>
                     <button class="btn btn-danger" @click="excluirPedido(pedido)">Excluir</button>
+                    <button class="btn btn-info" @click="visualizarPedido(pedido.id)">Visualizar</button>
                 </td>
             </tr>
           </tbody>
@@ -55,7 +56,10 @@ export default {
                 await PedidoDataService.deletar(pedido.id);
                 this.obterPedidos();
             }
-        }
+        },
+        visualizarPedido(id) {
+            this.$router.push('/visualizarpedido/' + id);
+        },
     },
     mounted() {
         this.obterPedidos();

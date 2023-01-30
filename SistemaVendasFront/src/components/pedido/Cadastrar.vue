@@ -15,6 +15,9 @@
                 <label class="form-label">ClienteId</label>
                 <input type="text" required v-model="pedido.clienteId" class="form-control" placeholder="cliente id">
             </div>
+            <!-- <div v-for="(pedido, index) in pedidos" :key="index">
+                <h1>{{ pedido.id }}</h1>
+            </div> -->
             <button class="btn btn-success" @click="CadastrarPedido" style="margin-top: 4%">Cadastrar</button>
         </div>
     </div>
