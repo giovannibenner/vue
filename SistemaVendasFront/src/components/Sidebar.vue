@@ -33,8 +33,8 @@
         </button>
         <div class="collapse" id="pedido-collapse">
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-            <li><a href="#" class="link-dark rounded">Listar</a></li>
-            <li><a href="#" class="link-dark rounded">Novo</a></li>
+            <li><a href="/pedido/listar" class="link-dark rounded">Listar</a></li>
+            <li><a href="/pedido/cadastrar" class="link-dark rounded">Novo</a></li>
           </ul>
         </div>
       </li>

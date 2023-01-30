@@ -27,6 +27,18 @@ const routes = [
     {
         path: "/cliente/:id",
         component: () => import("./components/Cliente/Atualizar.vue")
+    },
+    {
+        path: "/pedido/listar",
+        component: () => import("./components/Pedido/Listar.vue")
+    },
+    {
+        path: "/pedido/cadastrar",
+        component: () => import("./components/Pedido/Cadastrar.vue")
+    },
+    {
+        path: "/pedido/:id",
+        component: () => import("./components/Pedido/Atualizar.vue")
     }
 ];
 const router = createRouter({
