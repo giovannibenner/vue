@@ -44,8 +44,8 @@
         </button>
         <div class="collapse" id="servico-collapse">
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-            <li><a href="#" class="link-dark rounded">Listar</a></li>
-            <li><a href="#" class="link-dark rounded">Novo</a></li>
+            <li><a href="/servico/listar" class="link-dark rounded">Listar</a></li>
+            <li><a href="/servico/cadastrar" class="link-dark rounded">Novo</a></li>
           </ul>
         </div>
       </li>

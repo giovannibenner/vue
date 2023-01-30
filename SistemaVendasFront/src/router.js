@@ -39,6 +39,18 @@ const routes = [
     {
         path: "/pedido/:id",
         component: () => import("./components/Pedido/Atualizar.vue")
+    },
+    {
+        path: "/servico/listar",
+        component: () => import("./components/Servico/Listar.vue")
+    },
+    {
+        path: "/servico/cadastrar",
+        component: () => import("./components/Servico/Cadastrar.vue")
+    },
+    {
+        path: "/servico/:id",
+        component: () => import("./components/Servico/Atualizar.vue")
     }
 ];
 const router = createRouter({
