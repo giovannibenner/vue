@@ -12,6 +12,10 @@ class ItemPedidoDataService {
     obterPorPedidoId(id) {
         return http.get(`/itempedido/obterpedidoid/${id}`);
     }
+
+    cadastrar(itemPedido) {
+        return http.post('/itempedido/', itemPedido)
+    }
 }
 
 export default new ItemPedidoDataService();

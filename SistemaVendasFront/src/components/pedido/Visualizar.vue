@@ -11,17 +11,17 @@
             </div>
             <div style="width: 20%">
                 <label class="form-label">ServicoId</label>
-                <input type="text" required class="form-control" placeholder="servico id">
+                <input type="text" required v-model="itemPedido.servicoId" class="form-control" placeholder="servico id">
             </div>
             <div style="width: 20%">
                 <label class="form-label">Quantidade</label>
-                <input type="number" required class="form-control" placeholder="quantidade">
+                <input type="number" required v-model="itemPedido.quantidade" class="form-control" placeholder="quantidade">
             </div>
             <div style="width: 20%">
                 <label class="form-label">Valor</label>
-                <input type="text" required class="form-control" placeholder="valor unitario">
+                <input type="text" required v-model="itemPedido.valor" class="form-control" placeholder="valor unitario">
             </div>
-            <button class="btn btn-success" @click="AtualizarPedido" style="margin-top: 4%">Adicionar</button>
+            <button class="btn btn-success" @click="cadastrarItemPedido" style="margin-top: 4%">Adicionar</button>
         </div>
     </div>
     <div class="col-8" style="padding: 1%;">
@@ -62,6 +62,12 @@ export default {
                 data: '',
                 vendedorId: '',
                 clienteId: ''
+            },
+            itemPedido: { 
+                pedidoId: '',
+                servicoId: '',
+                quantidade: '',
+                valor: ''
             }
         }
     },
@@ -77,6 +83,20 @@ export default {
                             .then(response => {
                                 this.pedido = response.data;
                             });
+        },
+        cadastrarItemPedido() {
+            var data = {
+                pedidoId: this.pedido.id,
+                servicoId: this.itemPedido.servicoId,
+                quantidade: this.itemPedido.quantidade,
+                valor: this.itemPedido.valor
+            };
+
+            ItemPedidoDataService.cadastrar(data)
+                .then(() => {
+                    // this.$router.push('listar');
+                    this.obterItensPedido()
+                });
         }
     },
     mounted() {
