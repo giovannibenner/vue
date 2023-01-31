@@ -46,7 +46,7 @@
                 <td>{{ itempedido.valor }}</td>
                 <td>
                     <button class="btn btn-success" @click="editarItemPedido(itempedido.id)">Editar</button>
-                    <!-- <button class="btn btn-danger" @click="excluirPedido(pedido)">Excluir</button> -->
+                    <button class="btn btn-danger" @click="excluirItemPedido(itempedido)">Excluir</button>
                 </td>
             </tr>
           </tbody>
@@ -104,7 +104,14 @@ export default {
         },
         editarItemPedido(id) {
             this.$router.push('/itempedido/' + id);
-        }
+        },
+        async excluirItemPedido(itempedido) {
+            if(confirm(`Tem certeza que deseja excluir o pedido ${itempedido.id}?`))
+            {
+                await ItemPedidoDataService.deletar(itempedido.id);
+                this.obterItensPedido();
+            }
+        },
     },
     mounted() {
         this.obterItensPedido(),

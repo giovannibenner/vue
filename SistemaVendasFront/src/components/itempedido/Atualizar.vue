@@ -37,7 +37,7 @@ export default {
         }
     },
     methods: {
-        ObterItemPedido(id) {
+        ObterItensPedido(id) {
             ItemPedidoDataService.obterPorId(id)
                 .then((response) => {
                     this.itemPedido = response.data;
@@ -59,7 +59,7 @@ export default {
         }
     },
     mounted() {
-        this.ObterItemPedido(this.$route.params.id);
+        this.ObterItensPedido(this.$route.params.id);
     }
 }
 </script>

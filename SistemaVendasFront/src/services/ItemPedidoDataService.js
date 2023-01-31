@@ -20,6 +20,10 @@ class ItemPedidoDataService {
     atualizar(id, itemPedido) {
         return http.put(`/itempedido/${id}`, itemPedido);
     }
+
+    async deletar(id) {
+        return await http.delete(`/itempedido/${id}`);
+    }
 }
 
 export default new ItemPedidoDataService();
