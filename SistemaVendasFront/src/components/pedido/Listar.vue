@@ -33,6 +33,7 @@
 </template>
 <script>
 import PedidoDataService from '../../services/PedidoDataService';
+import VendedorDataService from '../../services/VendedorDataService';
 
 export default {
     data() {
@@ -45,7 +46,9 @@ export default {
             PedidoDataService.listar()
                 .then(response => {
                     this.pedidos = response.data;
+                    this.obterVendedor();
                 });
+            
         },
         editarPedido(id) {
             this.$router.push('/pedido/' + id);
@@ -60,9 +63,21 @@ export default {
         visualizarPedido(id) {
             this.$router.push('/visualizarpedido/' + id);
         },
+        obterVendedor() {
+            console.log(this.pedidos);
+            for(let pedido in this.pedidos)
+            {
+                VendedorDataService.obterPorId(this.pedidos[pedido].vendedorId)
+                .then(response => {
+                    console.log(response.data.nome);
+                    this.pedidos[pedido].vendedor = response.data.nome;
+                });
+            }
+        },
     },
     mounted() {
         this.obterPedidos();
     }
+    
 }
 </script>
