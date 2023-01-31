@@ -58,7 +58,20 @@ const routes = [
         component: () => import("./components/Servico/Atualizar.vue")
     },
     {
+        path: "/itempedido/listar",
+        component: () => import("./components/ItemPedido/Listar.vue")
+    },
+    {
+        path: "/itempedido/cadastrar",
+        component: () => import("./components/ItemPedido/Cadastrar.vue")
+    },
+    {
         path: "/itempedido/:id",
+        component: () => import("./components/ItemPedido/Atualizar.vue")
+    },
+    {
+        name: 'editaritem',
+        path: "/pedido/itempedido/:id",
         component: () => import("./components/ItemPedido/Atualizar.vue")
     }
 ];

@@ -102,10 +102,10 @@ export default {
                 });
         },
         editarItemPedido(id) {
-            this.$router.push('/itempedido/' + id);
+            this.$router.push({name: 'editaritem', params: id});
         },
         async excluirItemPedido(itempedido) {
-            if(confirm(`Tem certeza que deseja excluir o pedido ${itempedido.id}?`))
+            if(confirm(`Tem certeza que deseja excluir o Item ${itempedido.id}?`))
             {
                 await ItemPedidoDataService.deletar(itempedido.id);
                 this.obterItensPedido();

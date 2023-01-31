@@ -23,7 +23,7 @@
                 <label class="form-label">Valor</label>
                 <input type="text" required v-model="itemPedido.valor" class="form-control" placeholder="valor unitario">
             </div>
-            <button class="btn btn-success" @click="AtualizarItemPedido" style="margin-top: 4%">Atualizar</button>
+            <button class="btn btn-success" @click="AtualizarItemPedido()" style="margin-top: 4%">Atualizar</button>
         </div>
     </div>
 </template>
@@ -52,10 +52,20 @@ export default {
 
             };
 
-            ItemPedidoDataService.atualizar(this.itemPedido.id, this.itemPedido)
+            if(this.$route.href.includes("pedido/item"))
+            {
+                ItemPedidoDataService.atualizarPedido(this.itemPedido.id, this.itemPedido)
                 .then(() => {
-                    this.$router.push({name: 'pedidos', params: this.$route.params.id});
-                });
+                        this.$router.push({name: 'pedidos', params: this.$route.params.id});
+                    });
+            }
+            else
+            {
+                ItemPedidoDataService.atualizar(this.itemPedido.id, this.itemPedido)
+                .then(() => {
+                    this.$router.push('listar/');
+                    });
+            }
         }
     },
     mounted() {

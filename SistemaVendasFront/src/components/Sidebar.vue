@@ -49,6 +49,17 @@
           </ul>
         </div>
       </li>
+      <li class="mb-1">
+        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#itempedido-collapse" aria-expanded="false">
+          Itens Pedido
+        </button>
+        <div class="collapse" id="itempedido-collapse">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            <li><a href="/itempedido/listar" class="link-dark rounded">Listar</a></li>
+            <li><a href="/itempedido/cadastrar" class="link-dark rounded">Novo</a></li>
+          </ul>
+        </div>
+      </li>
     </ul>
   </div>
 </template>
