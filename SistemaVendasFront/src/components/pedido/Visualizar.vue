@@ -98,7 +98,6 @@ export default {
 
             ItemPedidoDataService.cadastrar(data)
                 .then(() => {
-                    // this.$router.push('listar');
                     this.obterItensPedido()
                 });
         },

@@ -41,6 +41,7 @@ const routes = [
         component: () => import("./components/Pedido/Atualizar.vue")
     },
     {
+        name: 'pedidos',
         path: "/visualizarpedido/:id",
         component: () => import("./components/Pedido/Visualizar.vue")
     },

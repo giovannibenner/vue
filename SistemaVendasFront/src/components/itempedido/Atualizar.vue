@@ -54,7 +54,7 @@ export default {
 
             ItemPedidoDataService.atualizar(this.itemPedido.id, this.itemPedido)
                 .then(() => {
-                    this.$router.push('listar');
+                    this.$router.push({name: 'pedidos', params: this.$route.params.id});
                 });
         }
     },
