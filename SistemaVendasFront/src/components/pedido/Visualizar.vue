@@ -67,7 +67,7 @@ export default {
                 vendedorId: '',
                 clienteId: ''
             },
-            itemPedido: { 
+            itemPedido: {
                 pedidoId: '',
                 servicoId: '',
                 quantidade: '',
@@ -102,7 +102,8 @@ export default {
                 });
         },
         editarItemPedido(id) {
-            this.$router.push({name: 'editaritem', params: id});
+            console.log(id)
+            this.$router.push({name: 'editaritem', params: {id : `${id}`}});
         },
         async excluirItemPedido(itempedido) {
             if(confirm(`Tem certeza que deseja excluir o Item ${itempedido.id}?`))
