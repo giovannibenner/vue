@@ -55,6 +55,10 @@ const routes = [
     {
         path: "/servico/:id",
         component: () => import("./components/Servico/Atualizar.vue")
+    },
+    {
+        path: "/itempedido/:id",
+        component: () => import("./components/ItemPedido/Atualizar.vue")
     }
 ];
 const router = createRouter({

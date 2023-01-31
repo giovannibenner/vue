@@ -44,6 +44,10 @@
                 <td>{{ itempedido.servicoId }}</td>
                 <td>{{ itempedido.quantidade }}</td>
                 <td>{{ itempedido.valor }}</td>
+                <td>
+                    <button class="btn btn-success" @click="editarItemPedido(itempedido.id)">Editar</button>
+                    <!-- <button class="btn btn-danger" @click="excluirPedido(pedido)">Excluir</button> -->
+                </td>
             </tr>
           </tbody>
         </table>
@@ -97,6 +101,9 @@ export default {
                     // this.$router.push('listar');
                     this.obterItensPedido()
                 });
+        },
+        editarItemPedido(id) {
+            this.$router.push('/itempedido/' + id);
         }
     },
     mounted() {

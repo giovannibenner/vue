@@ -16,6 +16,10 @@ class ItemPedidoDataService {
     cadastrar(itemPedido) {
         return http.post('/itempedido/', itemPedido)
     }
+
+    atualizar(id, itemPedido) {
+        return http.put(`/itempedido/${id}`, itemPedido);
+    }
 }
 
 export default new ItemPedidoDataService();
