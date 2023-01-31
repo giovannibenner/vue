@@ -1,6 +1,30 @@
 <template>
-    <div class="col-8">
-        <h1>Pedido: {{ pedido.id }}</h1>
+<div class="flex" style="width: 80%;">
+    <h1>Pedido: {{ pedido.id }}</h1>
+    <div class="form" style="padding: 1%; width: 80%;">
+        <h3>Adicionar Item</h3>
+        <hr/>
+        <div class="d-flex" style="width: 100%">
+            <div style="width: 20%">
+                <label class="form-label">PedidoId</label>
+                <input type="text" disabled v-model="pedido.id" class="form-control">
+            </div>
+            <div style="width: 20%">
+                <label class="form-label">ServicoId</label>
+                <input type="text" required class="form-control" placeholder="servico id">
+            </div>
+            <div style="width: 20%">
+                <label class="form-label">Quantidade</label>
+                <input type="number" required class="form-control" placeholder="quantidade">
+            </div>
+            <div style="width: 20%">
+                <label class="form-label">Valor</label>
+                <input type="text" required class="form-control" placeholder="valor unitario">
+            </div>
+            <button class="btn btn-success" @click="AtualizarPedido" style="margin-top: 4%">Adicionar</button>
+        </div>
+    </div>
+    <div class="col-8" style="padding: 1%;">
         <h3>Itens do Pedido</h3>
         <hr>
         <table class="table table-striped">
@@ -24,6 +48,7 @@
           </tbody>
         </table>
     </div>
+</div>
 </template>
 <script>
 import PedidoDataService from '../../services/PedidoDataService';
