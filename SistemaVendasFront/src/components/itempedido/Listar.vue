@@ -8,6 +8,7 @@
               <th scope="col">Id</th>
               <th scope="col">PedidoId</th>
               <th scope="col">ServicoId</th>
+              <th scope="col">Servico</th>
               <th scope="col">Quantidade</th>
               <th scope="col">Valor</th>
             </tr>
@@ -20,6 +21,7 @@
                     <button class="btn btn-info" @click="visualizarPedido(item.pedidoId)">Visualizar</button>
                 </td>
                 <td>{{ item.servicoId }}</td>
+                <td>{{ item.servico }}</td>
                 <td>{{ item.quantidade }}</td>
                 <td>{{ item.valor }}</td>
                 <td>
@@ -33,7 +35,7 @@
 </template>
 <script>
 import ItemPedidoDataService from '../../services/ItemPedidoDataService';
-import PedidoDataService from '../../services/PedidoDataService';
+import ServicoDataService from '../../services/ServicoDataService';
 
 export default {
     data() {
@@ -46,6 +48,7 @@ export default {
             ItemPedidoDataService.listar()
                 .then(response => {
                     this.itensPedidos = response.data;
+                    this.obterServico();
                 });
         },
         editarItemPedido(id) {
@@ -61,6 +64,15 @@ export default {
         visualizarPedido(id) {
             this.$router.push('/visualizarpedido/' + id);
         },
+        obterServico() {
+            for(let item in this.itensPedidos)
+            {
+                ServicoDataService.obterPorId(this.itensPedidos[item].servicoId)
+                .then(response => {
+                    this.itensPedidos[item].servico = response.data.nome;
+                });
+            }
+        }
     },
     mounted() {
         this.obterItens();

@@ -70,7 +70,6 @@ export default {
             {
                 VendedorDataService.obterPorId(this.pedidos[pedido].vendedorId)
                 .then(response => {
-                    console.log(response.data.nome);
                     this.pedidos[pedido].vendedor = response.data.nome;
                 });
             }
