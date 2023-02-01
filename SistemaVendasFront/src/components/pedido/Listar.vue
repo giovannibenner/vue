@@ -34,6 +34,7 @@
 <script>
 import PedidoDataService from '../../services/PedidoDataService';
 import VendedorDataService from '../../services/VendedorDataService';
+import ClienteDataService from  '../../services/ClienteDataService';
 
 export default {
     data() {
@@ -47,6 +48,7 @@ export default {
                 .then(response => {
                     this.pedidos = response.data;
                     this.obterVendedor();
+                    this.obterCliente();
                 });
             
         },
@@ -64,7 +66,6 @@ export default {
             this.$router.push('/visualizarpedido/' + id);
         },
         obterVendedor() {
-            console.log(this.pedidos);
             for(let pedido in this.pedidos)
             {
                 VendedorDataService.obterPorId(this.pedidos[pedido].vendedorId)
@@ -74,6 +75,15 @@ export default {
                 });
             }
         },
+        obterCliente() {
+            for(let pedido in this.pedidos)
+            {
+                ClienteDataService.obterPorId(this.pedidos[pedido].clienteId)
+                .then(response => {
+                    this.pedidos[pedido].cliente = response.data.nome;
+                });
+            }
+        }
     },
     mounted() {
         this.obterPedidos();
