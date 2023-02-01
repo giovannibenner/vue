@@ -8,22 +8,25 @@
                 <input type="datetime-local" required v-model="pedido.data" class="form-control" placeholder="data">
             </div>
             <div>
-                <label class="form-label">VendedorId</label>
-                <input type="text" required v-model="pedido.vendedorId" class="form-control" placeholder="vendedor id">
+                <label class="form-label">Vendedor</label>
+                <select v-model="pedido.vendedorId">
+                    <option v-for="(vendedor, index) in vendedores" :key="index" :value="vendedor.id"> {{ vendedor.id }} | {{ vendedor.nome }} </option>
+                </select>
             </div>
             <div>
-                <label class="form-label">ClienteId</label>
-                <input type="text" required v-model="pedido.clienteId" class="form-control" placeholder="cliente id">
+                <label class="form-label">Cliente</label>
+                <select v-model="pedido.clienteId">
+                    <option v-for="(cliente, index) in clientes" :key="index" :value="cliente.id"> {{ cliente.id }} | {{ cliente.nome }} </option>
+                </select>
             </div>
-            <!-- <div v-for="(pedido, index) in pedidos" :key="index">
-                <h1>{{ pedido.id }}</h1>
-            </div> -->
             <button class="btn btn-success" @click="CadastrarPedido" style="margin-top: 4%">Cadastrar</button>
         </div>
     </div>
 </template>
 <script>
 import PedidoDataService from '../../services/PedidoDataService';
+import VendedorDataService from '../../services/VendedorDataService';
+import ClienteDataService from '../../services/ClienteDataService';
 
 export default {
     data() {
@@ -32,11 +35,14 @@ export default {
                 data: '',
                 vendedorId: '',
                 clienteId: ''
-            }
+            },
+            vendedores: [],
+            clientes: []
         }
     },
     methods: {
         CadastrarPedido() {
+            console.log(this.pedido.vendedorId)
             var data = {
                 data: this.pedido.data,
                 vendedorId: this.pedido.vendedorId,
@@ -47,7 +53,24 @@ export default {
                 .then(() => {
                     this.$router.push('listar');
                 });
+        },
+        ObterVendedores() {
+            VendedorDataService.listar()
+                .then(response => {
+                    this.vendedores = response.data;
+                });
         }
+        ,
+        ObterClientes() {
+            ClienteDataService.listar()
+                .then(response => {
+                    this.clientes = response.data;
+                });
+        }
+    },
+    mounted() {
+        this.ObterVendedores();
+        this.ObterClientes();
     }
 }
 </script>
