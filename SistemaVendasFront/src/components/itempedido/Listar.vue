@@ -15,7 +15,10 @@
           <tbody>
             <tr v-for="(item, index) in itensPedidos" :key="index">
                 <td>{{ item.id }}</td>
-                <td>{{ item.pedidoId }}</td>
+                <td>
+                    {{ item.pedidoId }}
+                    <button class="btn btn-info" @click="visualizarPedido(item.pedidoId)">Visualizar</button>
+                </td>
                 <td>{{ item.servicoId }}</td>
                 <td>{{ item.quantidade }}</td>
                 <td>{{ item.valor }}</td>
@@ -30,6 +33,7 @@
 </template>
 <script>
 import ItemPedidoDataService from '../../services/ItemPedidoDataService';
+import PedidoDataService from '../../services/PedidoDataService';
 
 export default {
     data() {
@@ -53,6 +57,9 @@ export default {
                 await ItemPedidoDataService.deletar(itempedido.id);
                 this.obterItensPedido();
             }
+        },
+        visualizarPedido(id) {
+            this.$router.push('/visualizarpedido/' + id);
         },
     },
     mounted() {
