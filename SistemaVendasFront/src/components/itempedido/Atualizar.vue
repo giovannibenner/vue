@@ -56,7 +56,9 @@ export default {
             {
                 ItemPedidoDataService.atualizarPedido(this.itemPedido.id, this.itemPedido)
                 .then(() => {
-                        this.$router.push({name: 'pedidos', params: {id: `${this.$route.params.id}`}});
+                    console.log(this.$route.params.id)
+                    console.log(this.itemPedido.pedidoId)
+                        this.$router.push({name: 'pedidos', params: {id: `${this.itemPedido.pedidoId}`}});
                     });
             }
             else
