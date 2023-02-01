@@ -35,6 +35,7 @@
               <th scope="col">ServicoId</th>
               <th scope="col">Quantidade</th>
               <th scope="col">Valor</th>
+              <th scope="col">Valor Total</th>
             </tr>
           </thead>
           <tbody>
@@ -44,6 +45,7 @@
                 <td>{{ itempedido.servicoId }}</td>
                 <td>{{ itempedido.quantidade }}</td>
                 <td>{{ itempedido.valor }}</td>
+                <td>{{ itempedido.valorTotal }}</td>
                 <td>
                     <button class="btn btn-success" @click="editarItemPedido(itempedido.id)">Editar</button>
                     <button class="btn btn-danger" @click="excluirItemPedido(itempedido)">Excluir</button>
@@ -80,6 +82,11 @@ export default {
             ItemPedidoDataService.obterPorPedidoId(this.$route.params.id)
                                  .then(response => {
                                     this.itensPedidos = response.data;
+                                    for(let item in this.itensPedidos)
+                                    {
+                                        this.itensPedidos[item].valorTotal = Number(Number(this.itensPedidos[item].quantidade)
+                                                                             * Number(this.itensPedidos[item].valor));
+                                    }
                                  });
         },
         obterPedidoInfo() {
@@ -93,7 +100,8 @@ export default {
                 pedidoId: this.pedido.id,
                 servicoId: this.itemPedido.servicoId,
                 quantidade: this.itemPedido.quantidade,
-                valor: this.itemPedido.valor
+                valor: this.itemPedido.valor,
+                valorTotal: Number(Number(this.itemPedido.quantidade) * Number(this.itemPedido.valor))
             };
 
             ItemPedidoDataService.cadastrar(data)
