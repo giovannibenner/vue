@@ -1,4 +1,5 @@
 <template>
+<div class="flex">
     <h3>Novo vendedor</h3>
     <div class="form" style="padding: 1%;">
         <hr/>
@@ -18,6 +19,7 @@
             <button class="btn btn-success" @click="CadastrarVendedor" style="margin-top: 4%">Cadastrar</button>
         </div>
     </div>
+</div>
 </template>
 <script>
 import VendedorDataService from '../../services/VendedorDataService';
