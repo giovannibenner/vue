@@ -14,9 +14,12 @@
                 <label class="form-label" style="margin-top: 4%;">Id do Pedido</label>
                 <input type="number" min="0" required v-model="item.pedidoId" class="form-control" placeholder="pedidoId">
             </div>
-            <div style="width: 60%;">
+            <div style="width: 60%;" class="row">
                 <label class="form-label" style="margin-top: 4%;">Servico</label>
-                <input type="text" required v-model="item.servicoId" class="form-control" placeholder="servicoId">
+                <!-- <input type="text" required v-model="item.servicoId" class="form-control" placeholder="servicoId"> -->
+                <select v-model="item.servicoId">
+                    <option v-for="(servico, index) in servicos" :key="index" :value="servico.id"> {{ servico.id }} - {{ servico.nome }} </option>
+                </select>
             </div>
             <div style="width: 60%;">
                 <label class="form-label" style="margin-top: 4%;">Quantidade</label>
@@ -36,6 +39,7 @@
 </template>
 <script>
 import ItemPedidoDataService from '../../services/ItemPedidoDataService';
+import ServicoDataService from '../../services/ServicoDataService';
 
 export default {
     data() {
@@ -45,7 +49,8 @@ export default {
                 servicoId: '',
                 quantidade: '',
                 valor: ''
-            }
+            },
+            servicos: []
         }
     },
     methods: {
@@ -61,7 +66,23 @@ export default {
                 .then(() => {
                     this.$router.push('listar');
                 });
+        },
+        ObterServicos()
+        {
+            ServicoDataService.listar()
+                                .then(response => {
+                                    this.servicos = response.data;
+                                    console.log(this.servicos);
+                                });
         }
+    },
+    mounted(){
+        this.ObterServicos();
     }
 }
 </script>
+<style scoped>
+label {
+    padding: 0;
+}
+</style>
