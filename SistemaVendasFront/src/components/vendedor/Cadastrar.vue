@@ -1,6 +1,6 @@
 <template>
 <div class="d-flex justify-content-center align-items-center" style="width: 80%; height: 100%;">
-<div class="card" style="width: 60%; height: auto; padding: 1%;">
+<div class="card" style="width: 50%; height: auto; padding: 1%;">
     <div class="justify-content-center align-items-center">
         <div class="bg-dark text-white d-flex align-items-center justify-content-center rounded" style="width: 100%;">
             <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
@@ -21,7 +21,7 @@
             </div>
             <div style="width: 60%;">
                 <label class="form-label" style="margin-top: 4%;">Senha</label>
-                <input type="password" required v-model="vendedor.senha" class="form-control">
+                <input type="password" required v-model="vendedor.senha" class="form-control" placeholder="senha">
             </div>
             <div style="width: 60%;">
                 <button class="btn btn-success" @click="CadastrarVendedor" style="margin-top: 4%; width: 100%;">Cadastrar</button>
