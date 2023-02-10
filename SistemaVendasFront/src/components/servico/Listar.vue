@@ -13,9 +13,10 @@
         <table class="table table-striped">
           <thead>
             <tr>
-              <th scope="col">Id</th>
-              <th scope="col">Nome</th>
-              <th scope="col">Descricao</th>
+              <th scope="col" style="width: 10%;">Id</th>
+              <th scope="col" style="width: 20%;">Nome</th>
+              <th scope="col" style="width: 40%;">Descricao</th>
+              <th scope="col" style="width: 30%;">Ações</th>
             </tr>
           </thead>
           <tbody>

@@ -1,6 +1,6 @@
 <template>
 <div class="d-flex justify-content-center align-items-center" style="width: 80%; height: 100%;">
-<div class="card" style="width: 60%; height: auto">
+<div class="card" style="width: 90%; height: auto">
     <div class="col-8 p-2 justify-content-center" style="width: 100%; height: 100%;">
         <div class="bg-dark text-white d-flex align-items-center justify-content-center rounded" style="width: 100%;">
             <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" class="bi bi-clipboard" viewBox="0 0 16 16">
@@ -13,12 +13,13 @@
         <table class="table table-striped">
           <thead>
             <tr>
-              <th scope="col">Id</th>
-              <th scope="col">Data</th>
-              <th scope="col">VendedorId</th>
-              <th scope="col">Vendedor</th>
-              <th scope="col">ClienteId</th>
-              <th scope="col">Cliente</th>
+              <th scope="col" style="width: 5%;">Id</th>
+              <th scope="col" style="width: 20%;">Data</th>
+              <th scope="col" style="width: 5%;">VendedorId</th>
+              <th scope="col" style="width: 20%;">Vendedor</th>
+              <th scope="col" style="width: 5%;">ClienteId</th>
+              <th scope="col" style="width: 20%;">Cliente</th>
+              <th scope="col" style="width: 25%;">Ações</th>
             </tr>
           </thead>
           <tbody>

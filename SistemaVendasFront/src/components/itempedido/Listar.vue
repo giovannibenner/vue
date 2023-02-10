@@ -12,24 +12,33 @@
         <table class="table table-striped">
           <thead>
             <tr>
-              <th scope="col">Id</th>
-              <th scope="col">PedidoId</th>
-              <th scope="col">ServicoId</th>
-              <th scope="col">Servico</th>
-              <th scope="col">Quantidade</th>
-              <th scope="col">Valor</th>
-              <th scope="col">Valor Total</th>
+              <th scope="col" style="width: 5%;">Id</th>
+              <th scope="col" style="width: 5%;">Pedido</th>
+              <th scope="col" style="width: 5%;">Id</th>
+              <th scope="col" style="width: 20%;">Servico</th>
+              <th scope="col" style="width: 5%;">Id</th>
+              <th scope="col" style="width: 5%;">Qtd</th>
+              <th scope="col" style="width: 10%;">Valor</th>
+              <th scope="col" style="width: 15%;">Valor Total</th>
+              <th scope="col" style="width: 30%;">Ações</th>
             </tr>
           </thead>
           <tbody>
             <tr v-for="(item, index) in itensPedidos" :key="index">
                 <td>{{ item.id }}</td>
                 <td>
-                    {{ item.pedidoId }}
-                    <button class="btn btn-info" @click="visualizarPedido(item.pedidoId)">Visualizar</button>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard" viewBox="0 0 16 16"
+                    @click="visualizarPedido(item.pedidoId)">
+                        <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+                        <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+                    </svg>
                 </td>
-                <td>{{ item.servicoId }}</td>
+                <td>
+                    {{ item.pedidoId }}
+                    <!-- <button class="btn btn-info" @click="visualizarPedido(item.pedidoId)">Visualizar</button> -->
+                </td>
                 <td>{{ item.servico }}</td>
+                <td>{{ item.servicoId }}</td>
                 <td>{{ item.quantidade }}</td>
                 <td>{{ item.valor }}</td>
                 <td>{{ item.valorTotal }}</td>

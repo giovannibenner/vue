@@ -10,13 +10,13 @@
             <h3 class="p-4">Listagem de Vendedores</h3>
         </div>
         <hr>
-        <table class="table table-striped">
-          <thead>
+        <table class="table table-striped ">
+          <thead class="table-dark">
             <tr>
-              <th scope="col">Id</th>
-              <th scope="col">Nome</th>
-              <th scope="col">Login</th>
-              <th scope="col">Ações</th>
+              <th scope="col" style="width: 10%;">Id</th>
+              <th scope="col" style="width: 40%;">Nome</th>
+              <th scope="col" style="width: 20%;">Login</th>
+              <th scope="col" style="width: 30%;">Ações</th>
             </tr>
           </thead>
           <tbody>
