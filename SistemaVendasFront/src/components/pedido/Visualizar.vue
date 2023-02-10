@@ -1,6 +1,15 @@
 <template>
-<div class="flex" style="width: 80%;">
-    <h1>Pedido: {{ pedido.id }}</h1>
+<div class="d-flex justify-content-center align-items-center" style="width: 80%; height: 100%;">
+<div class="card" style="width: 80%; height: auto">
+    <div class="col-8 p-2 justify-content-center" style="width: 100%; height: 100%;">
+        <div class="p-4 bg-dark text-white d-flex align-items-center rounded" style="width: 100%;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" class="bi bi-clipboard" viewBox="0 0 16 16">
+                <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+                <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+            </svg>
+            <h3>Pedido: {{ pedido.id }}</h3>
+        </div>
+        <hr>
     <div class="form" style="padding: 1%; width: 80%;">
         <h3>Adicionar Item</h3>
         <hr/>
@@ -24,7 +33,7 @@
             <button class="btn btn-success" @click="cadastrarItemPedido" style="margin-top: 4%">Adicionar</button>
         </div>
     </div>
-    <div class="col-8" style="padding: 1%;">
+    <div class="col-8" style="width: 100%;">
         <h3>Itens do Pedido</h3>
         <hr>
         <table class="table table-striped">
@@ -36,6 +45,7 @@
               <th scope="col">Quantidade</th>
               <th scope="col">Valor</th>
               <th scope="col">Valor Total</th>
+              <th scope="col">Ações</th>
             </tr>
           </thead>
           <tbody>
@@ -54,6 +64,8 @@
           </tbody>
         </table>
     </div>
+</div>
+</div>
 </div>
 </template>
 <script>
