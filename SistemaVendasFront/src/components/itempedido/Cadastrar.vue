@@ -10,7 +10,7 @@
             </div>
             <hr/>
             <div class="d-flex row align-items-center justify-content-center" style="width: 100%;">
-                <div style="width: 60%;">
+            <div style="width: 60%;">
                 <label class="form-label" style="margin-top: 4%;">Id do Pedido</label>
                 <input type="number" min="0" required v-model="item.pedidoId" class="form-control" placeholder="pedidoId">
             </div>
