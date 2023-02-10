@@ -1,6 +1,6 @@
 <template>
 <div class="d-flex justify-content-center align-items-center" style="width: 80%; height: 100%;">
-<div class="card" style="width: 60%; height: auto">
+<div class="card" style="width: 70%; height: auto">
     <div class="col-8 p-2 justify-content-center" style="width: 100%; height: 100%;">
         <div class="bg-dark text-white d-flex align-items-center justify-content-center rounded" style="width: 100%;">
             <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" class="bi bi-building" viewBox="0 0 16 16">
