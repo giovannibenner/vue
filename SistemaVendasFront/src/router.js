@@ -22,6 +22,10 @@ const routes = [
         component: () => import("./components/Vendedor/AtualizarSenha.vue")
     },
     {
+        path: "/vendedor/pedidos/:id",
+        component: () => import("./components/Vendedor/Pedidos.vue")
+    },
+    {
         name: "clientes",
         path: "/cliente/listar",
         component: () => import("./components/Cliente/Listar.vue")

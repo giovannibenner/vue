@@ -1,6 +1,6 @@
 <template>
 <div class="d-flex justify-content-center align-items-center" style="width: 80%; height: 100%;">
-<div class="card" style="width: 60%; height: auto">
+<div class="card" style="width: 70%; height: auto">
     <div class="col-8 p-2 justify-content-center" style="width: 100%; height: 100%;">
         <div class="bg-dark text-white d-flex align-items-center justify-content-center rounded" style="width: 100%;">
             <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
@@ -27,8 +27,9 @@
                 <td>
                     <button class="btn btn-success" @click="editarVendedor(vendedor.id)">Editar</button>
                     <button class="btn btn-danger" @click="excluirVendedor(vendedor)">Excluir</button>
-                    <button class="btn btn-info" @click="AtualizarSenha(vendedor.id)"
+                    <button class="btn btn-warning" @click="AtualizarSenha(vendedor.id)"
                      data-toggle="tooltip" data-placement="top" title="Atualizar Senha">Senha</button>
+                     <button class="btn btn-info" @click="ListarPedidosVendedor(vendedor.id)">Pedidos</button>
                 </td>
             </tr>
           </tbody>
@@ -65,6 +66,9 @@ export default {
         },
         AtualizarSenha(id) {
             this.$router.push('/vendedor/atualizarsenha/' + id);
+        },
+        ListarPedidosVendedor(id) {
+            this.$router.push('/vendedor/pedidos/' + id);
         }
     },
     mounted() {
