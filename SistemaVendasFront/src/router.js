@@ -22,6 +22,7 @@ const routes = [
         component: () => import("./components/Vendedor/AtualizarSenha.vue")
     },
     {
+        name: "clientes",
         path: "/cliente/listar",
         component: () => import("./components/Cliente/Listar.vue")
     },
@@ -36,7 +37,7 @@ const routes = [
     ,
     {
         path: "/cliente/atualizarsenha/:id",
-        component: () => import("./components/Cliente/Atualizar.vue")
+        component: () => import("./components/Cliente/AtualizarSenha.vue")
     },
     {
         path: "/pedido/listar",

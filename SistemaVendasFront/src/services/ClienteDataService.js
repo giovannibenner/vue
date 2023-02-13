@@ -20,6 +20,10 @@ class ClienteDataService {
     async deletar(id) {
         return await http.delete(`/cliente/${id}`);
     }
+
+    atualizarSenha(id, senha) {
+        return http.patch(`/cliente/atualizarsenha/${id}`, senha);
+    }
 }
 
 export default new ClienteDataService();

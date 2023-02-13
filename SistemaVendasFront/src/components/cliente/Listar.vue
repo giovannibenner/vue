@@ -14,9 +14,9 @@
           <thead>
             <tr>
               <th scope="col" style="width: 10%;">Id</th>
-              <th scope="col" style="width: 40%;">Nome</th>
+              <th scope="col" style="width: 35%;">Nome</th>
               <th scope="col" style="width: 20%;">Login</th>
-              <th scope="col" style="width: 30%;">Ações</th>
+              <th scope="col" style="width: 35%;">Ações</th>
             </tr>
           </thead>
           <tbody>
@@ -27,6 +27,8 @@
                 <td>
                     <button class="btn btn-success" @click="editarCliente(cliente.id)">Editar</button>
                     <button class="btn btn-danger" @click="excluirCliente(cliente)">Excluir</button>
+                    <button class="btn btn-info" @click="AtualizarSenha(cliente.id)"
+                     data-toggle="tooltip" data-placement="top" title="Atualizar Senha">Senha</button>
                 </td>
             </tr>
           </tbody>
@@ -60,6 +62,9 @@ export default {
                 await ClienteDataService.deletar(cliente.id);
                 this.obterClientes();
             }
+        },
+        AtualizarSenha(id) {
+            this.$router.push('/cliente/atualizarsenha/' + id);
         }
     },
     mounted() {
