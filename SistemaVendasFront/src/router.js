@@ -5,6 +5,7 @@ const routes = [
         component: () => import("./components/Home.vue")
     },
     {
+        name: "vendedores",
         path: "/vendedor/listar",
         component: () => import("./components/Vendedor/Listar.vue")
     },
@@ -17,6 +18,10 @@ const routes = [
         component: () => import("./components/Vendedor/Atualizar.vue")
     },
     {
+        path: "/vendedor/atualizarsenha/:id",
+        component: () => import("./components/Vendedor/AtualizarSenha.vue")
+    },
+    {
         path: "/cliente/listar",
         component: () => import("./components/Cliente/Listar.vue")
     },
@@ -26,6 +31,11 @@ const routes = [
     },
     {
         path: "/cliente/:id",
+        component: () => import("./components/Cliente/Atualizar.vue")
+    },
+    ,
+    {
+        path: "/cliente/atualizarsenha/:id",
         component: () => import("./components/Cliente/Atualizar.vue")
     },
     {

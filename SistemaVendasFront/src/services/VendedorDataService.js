@@ -17,6 +17,10 @@ class VendedorDataService {
         return http.get(`/vendedor/${id}`);
     }
 
+    atualizarSenha(id, senha) {
+        return http.patch(`/vendedor/atualizarsenha/${id}`, senha);
+    }
+
     async deletar(id) {
         return await http.delete(`/vendedor/${id}`);
     }

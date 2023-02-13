@@ -14,9 +14,9 @@
           <thead class="table-dark">
             <tr>
               <th scope="col" style="width: 10%;">Id</th>
-              <th scope="col" style="width: 40%;">Nome</th>
+              <th scope="col" style="width: 35%;">Nome</th>
               <th scope="col" style="width: 20%;">Login</th>
-              <th scope="col" style="width: 30%;">Ações</th>
+              <th scope="col" style="width: 35%;">Ações</th>
             </tr>
           </thead>
           <tbody>
@@ -27,6 +27,8 @@
                 <td>
                     <button class="btn btn-success" @click="editarVendedor(vendedor.id)">Editar</button>
                     <button class="btn btn-danger" @click="excluirVendedor(vendedor)">Excluir</button>
+                    <button class="btn btn-info" @click="AtualizarSenha(vendedor.id)"
+                     data-toggle="tooltip" data-placement="top" title="Atualizar Senha">Senha</button>
                 </td>
             </tr>
           </tbody>
@@ -60,6 +62,9 @@ export default {
                 await VendedorDataService.deletar(vendedor.id);
                 this.obterVendedores();
             }
+        },
+        AtualizarSenha(id) {
+            this.$router.push('/vendedor/atualizarsenha/' + id);
         }
     },
     mounted() {
