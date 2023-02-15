@@ -46,10 +46,15 @@ export default {
                 descricao: this.servico.descricao
             };
 
-            ServicoDataService.cadastrar(data)
-                .then(() => {
-                    this.$router.push('listar');
-                });
+            if(data.nome == '' || data.descricao == '')
+                alert("Campo vazio não permitido");
+            else
+            {
+                ServicoDataService.cadastrar(data)
+                    .then(() => {
+                        this.$router.push('listar');
+                    });
+            }
         }
     }
 }

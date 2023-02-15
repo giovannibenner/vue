@@ -23,7 +23,7 @@
               <th scope="col" style="width: 20%;">Servico</th>
               <th scope="col" style="width: 5%;">Qtd</th>
               <th scope="col" style="width: 10%;">Valor</th>
-              <th scope="col" style="width: 15%;">Valor Total</th>
+              <th scope="col" style="width: 15%;">Sub Total</th>
               <th scope="col" style="width: 30%;">Ações</th>
             </tr>
           </thead>
@@ -44,8 +44,8 @@
                 <td>{{ item.servicoId }}</td>
                 <td>{{ item.servico }}</td>
                 <td>{{ item.quantidade }}</td>
-                <td>R${{ item.valor.toFixed(2) }}</td>
-                <td>R${{ item.subTotal.toFixed(2) }}</td>
+                <td>R${{ item.valor }}</td>
+                <td>R${{ item.subTotal }}</td>
                 <td>
                     <button class="btn btn-success" @click="editarItemPedido(item.id)">Editar</button>
                     <button class="btn btn-danger" @click="excluirItemPedido(item)">Excluir</button>
@@ -88,7 +88,7 @@ export default {
             if(confirm(`Tem certeza que deseja excluir o Item ${itempedido.id}?`))
             {
                 await ItemPedidoDataService.deletar(itempedido.id);
-                this.obterItensPedido();
+                this.obterItens();
             }
         },
         visualizarPedido(id) {
@@ -118,7 +118,13 @@ export default {
                                 itemPedido.pedidoId == param ||
                                 itemPedido.servicoId == param )
                             {
-                                this.itensPedidos.push(itemPedido)
+                                itemPedido.subTotal = Number(Number(itemPedido.quantidade)*Number(itemPedido.valor));
+
+                                ServicoDataService.obterPorId(itemPedido.servicoId)
+                                    .then(response => {
+                                        itemPedido.servico = response.data.nome;
+                                        this.itensPedidos.push(itemPedido);
+                                    });
                             }
                         }
                     });

@@ -62,10 +62,14 @@ export default {
                 valor: this.item.valor
             };
 
-            ItemPedidoDataService.cadastrar(data)
-                .then(() => {
-                    this.$router.push('listar');
-                });
+            if (data.pedidoId == '' || data.vendedorId == '' || data.quantidade == '' || data.valor == '')
+                alert("Campo vazio não permitido");
+            else {
+                ItemPedidoDataService.cadastrar(data)
+                    .then(() => {
+                        this.$router.push('listar');
+                    });
+            }
         },
         ObterServicos()
         {

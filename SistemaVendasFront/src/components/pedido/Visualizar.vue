@@ -121,10 +121,14 @@ export default {
                 subTotal: Number(Number(this.itemPedido.quantidade) * Number(this.itemPedido.valor))
             };
 
-            ItemPedidoDataService.cadastrar(data)
-                .then(() => {
-                    this.obterItensPedido()
-                });
+            if (data.pedidoId == '' || data.vendedorId == '' || data.quantidade == '' || data.valor == '')
+                alert("Campo vazio não permitido");
+            else {
+                ItemPedidoDataService.cadastrar(data)
+                    .then(() => {
+                        this.obterItensPedido()
+                    });
+            }
         },
         editarItemPedido(id) {
             this.$router.push({name: 'editaritem', params: {id : `${id}`}});

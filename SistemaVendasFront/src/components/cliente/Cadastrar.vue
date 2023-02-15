@@ -57,6 +57,8 @@ export default {
                 .then(response => {
                     if(response.data.find(x => x.login == data.login))
                         alert("Login já utilizado, tente outro");
+                    else if(data.login == '' || data.nome == '' || data.senha == '')
+                        alert("Campo vazio não permitido.");
                     else
                     {
                         ClienteDataService.cadastrar(data)

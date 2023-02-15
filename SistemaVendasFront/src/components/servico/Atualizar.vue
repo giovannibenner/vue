@@ -53,10 +53,14 @@ export default {
                 descricao: this.servico.descricao
             };
 
-            ServicoDataService.atualizar(this.servico.id, this.servico)
-                .then(() => {
-                    this.$router.push('listar');
-                });
+            if (data.nome == '' || data.descricao == '')
+                alert("Campo vazio não permitido");
+            else {
+                ServicoDataService.atualizar(this.servico.id, this.servico)
+                    .then(() => {
+                        this.$router.push('listar');
+                    });
+            }
         }
     },
     mounted() {

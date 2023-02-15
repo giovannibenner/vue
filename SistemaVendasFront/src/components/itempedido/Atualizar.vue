@@ -70,17 +70,25 @@ export default {
 
             if(this.$route.href.includes("pedido/item"))
             {
-                ItemPedidoDataService.atualizarPedido(this.itemPedido.id, this.itemPedido)
-                .then(() => {
-                        this.$router.push({name: 'pedidos', params: {id: `${this.itemPedido.pedidoId}`}});
-                    });
+                if (data.pedidoId == '' || data.vendedorId == '' || data.quantidade == '' || data.valor == '')
+                    alert("Campo vazio não permitido");
+                else {
+                    ItemPedidoDataService.atualizarPedido(this.itemPedido.id, this.itemPedido)
+                        .then(() => {
+                            this.$router.push({ name: 'pedidos', params: { id: `${this.itemPedido.pedidoId}` } });
+                        });
+                }
             }
             else
             {
-                ItemPedidoDataService.atualizar(this.itemPedido.id, this.itemPedido)
-                .then(() => {
-                    this.$router.push('listar/');
-                    });
+                if (data.pedidoId == '' || data.vendedorId == '' || data.quantidade == '' || data.valor == '')
+                    alert("Campo vazio não permitido");
+                else {
+                    ItemPedidoDataService.atualizar(this.itemPedido.id, this.itemPedido)
+                        .then(() => {
+                            this.$router.push('listar/');
+                        });
+                }
             }
         },
         ObterServicos()

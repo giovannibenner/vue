@@ -54,17 +54,21 @@ export default {
     },
     methods: {
         CadastrarPedido() {
-            console.log(this.pedido.vendedorId)
             var data = {
                 data: this.pedido.data,
                 vendedorId: this.pedido.vendedorId,
                 clienteId: this.pedido.clienteId
             };
 
+            if(data.data == '' || data.vendedorId == '' || data.clienteId == '')
+                alert("Campo vazio não permitido");
+            else
+            {
             PedidoDataService.cadastrar(data)
                 .then(() => {
                     this.$router.push('listar');
                 });
+            }
         },
         ObterVendedores() {
             VendedorDataService.listar()

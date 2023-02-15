@@ -59,10 +59,15 @@ export default {
                 senha: this.cliente.senha
             };
 
-            ClienteDataService.atualizar(this.cliente.id, this.cliente)
-                .then(() => {
-                    this.$router.push('listar');
-                });
+            if(data.nome == '' || data.senha == '')
+                alert("Campo vazio não permitido.");
+            else
+            {
+                ClienteDataService.atualizar(this.cliente.id, this.cliente)
+                    .then(() => {
+                        this.$router.push('listar');
+                    });
+            }
         }
     },
     mounted() {

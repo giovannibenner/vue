@@ -61,10 +61,15 @@ export default {
                 senha: this.vendedor.senha
             };
 
-            VendedorDataService.atualizar(this.vendedor.id, this.vendedor)
-                .then(() => {
-                    this.$router.push('listar');
-                });
+            if(data.nome == '' || data.senha == '')
+                alert("Campo vazio não permitido.");
+            else
+            {
+                VendedorDataService.atualizar(this.vendedor.id, this.vendedor)
+                    .then(() => {
+                        this.$router.push('listar');
+                    });
+            }
         }
     },
     mounted() {
