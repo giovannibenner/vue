@@ -10,6 +10,10 @@
             <h3 class="p-4">Listagem de Clientes</h3>
         </div>
         <hr>
+        <div class="d-flex p-2 justify-content-center" style="width: 100%">
+            <input type="text" class="form-control" v-model="param" placeholder="pesquise por id, nome ou login" style="width: 60%;">
+            <button class="btn btn-success" @click="Pesquisar(this.param)" style="margin-left: 0.5rem; width: 20%;">Pesquisar</button>
+        </div>
         <table class="table table-striped">
           <thead class="table-dark">
             <tr>
@@ -44,7 +48,8 @@ import ClienteDataService from '../../services/ClienteDataService';
 export default {
     data() {
         return {
-            clientes: []
+            clientes: [],
+            param: ''
         }
     },
     methods: {
@@ -69,6 +74,27 @@ export default {
         },
         ListarPedidosCliente(id) {
             this.$router.push('/cliente/pedidos/' + id);
+        },
+        Pesquisar(param)
+        {
+            if(param == '')
+                this.obterClientes();
+            else
+            {
+                ClienteDataService.listar()
+                    .then(response => {
+                        this.clientes = [];
+                        for(let cliente of response.data)
+                        {
+                            if(cliente.id == param ||
+                                cliente.nome.toUpperCase().includes(param.toUpperCase()) ||
+                                cliente.login.toUpperCase().includes(param.toUpperCase()))
+                            {
+                                this.clientes.push(cliente)
+                            }
+                        }
+                    });
+            }
         }
     },
     mounted() {

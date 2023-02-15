@@ -9,6 +9,10 @@
             <h3 class="p-4">Listagem de Itens</h3>
         </div>
         <hr>
+        <div class="d-flex p-2 justify-content-center" style="width: 100%">
+            <input type="text" class="form-control" v-model="param" placeholder="pesquise por id, servico id ou pedido id" style="width: 60%;">
+            <button class="btn btn-success" @click="Pesquisar(this.param)" style="margin-left: 0.5rem; width: 20%;">Pesquisar</button>
+        </div>
         <table class="table table-striped">
           <thead class="table-dark">
             <tr>
@@ -60,7 +64,8 @@ import ServicoDataService from '../../services/ServicoDataService';
 export default {
     data() {
         return {
-            itensPedidos: []
+            itensPedidos: [],
+            param: ''
         }
     },
     methods: {
@@ -96,6 +101,27 @@ export default {
                 .then(response => {
                     this.itensPedidos[item].servico = response.data.nome;
                 });
+            }
+        },
+        Pesquisar(param)
+        {
+            if(param == '')
+                this.obterItens();
+            else
+            {
+                ItemPedidoDataService.listar()
+                    .then(response => {
+                        this.itensPedidos = [];
+                        for(let itemPedido of response.data)
+                        {
+                            if(itemPedido.id == param ||
+                                itemPedido.pedidoId == param ||
+                                itemPedido.servicoId == param )
+                            {
+                                this.itensPedidos.push(itemPedido)
+                            }
+                        }
+                    });
             }
         }
     },

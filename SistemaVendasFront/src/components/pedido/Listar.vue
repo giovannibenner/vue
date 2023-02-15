@@ -10,6 +10,10 @@
             <h3 class="p-4">Listagem de Pedido</h3>
         </div>
         <hr>
+        <div class="d-flex p-2 justify-content-center" style="width: 100%">
+            <input type="text" class="form-control" v-model="param" placeholder="pesquise por id, vendedor id ou cliente id" style="width: 60%;">
+            <button class="btn btn-success" @click="Pesquisar(this.param)" style="margin-left: 0.5rem; width: 20%;">Pesquisar</button>
+        </div>
         <table class="table table-striped">
           <thead class="table-dark">
             <tr>
@@ -50,7 +54,8 @@ import ClienteDataService from  '../../services/ClienteDataService';
 export default {
     data() {
         return {
-            pedidos: []
+            pedidos: [],
+            param: ''
         }
     },
     methods: {
@@ -92,6 +97,36 @@ export default {
                 .then(response => {
                     this.pedidos[pedido].cliente = response.data.nome;
                 });
+            }
+        },
+        Pesquisar(param)
+        {
+            if(param == '')
+                this.obterPedidos();
+            else
+            {
+                PedidoDataService.listar()
+                    .then(response => {
+                        this.pedidos = [];
+                        for(let pedido of response.data)
+                        {
+                            if(pedido.clienteId == param || 
+                                pedido.vendedorId == param ||
+                                pedido.id == param)
+                            {
+                                VendedorDataService.obterPorId(pedido.vendedorId)
+                                    .then(response => { 
+
+                                    pedido.vendedor = response.data.nome;
+                                    ClienteDataService.obterPorId(pedido.clienteId)
+                                        .then(response => {
+                                            pedido.cliente = response.data.nome;
+                                            this.pedidos.push(pedido)
+                                        });
+                                 });
+                            }
+                        }
+                    });
             }
         }
     },

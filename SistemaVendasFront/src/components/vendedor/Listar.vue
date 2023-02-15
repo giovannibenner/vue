@@ -10,6 +10,10 @@
             <h3 class="p-4">Listagem de Vendedores</h3>
         </div>
         <hr>
+        <div class="d-flex p-2 justify-content-center" style="width: 100%">
+            <input type="text" class="form-control" v-model="param" placeholder="pesquise por id, nome ou login" style="width: 60%;">
+            <button class="btn btn-success" @click="Pesquisar(this.param)" style="margin-left: 0.5rem; width: 20%;">Pesquisar</button>
+        </div>
         <table class="table table-striped ">
           <thead class="table-dark">
             <tr>
@@ -44,7 +48,8 @@ import VendedorDataService from '../../services/VendedorDataService';
 export default {
     data() {
         return {
-            vendedores: []
+            vendedores: [],
+            param: ''
         }
     },
     methods: {
@@ -52,10 +57,6 @@ export default {
             VendedorDataService.listar()
                 .then(response => {
                     this.vendedores = response.data;
-
-                    if(response.data.find(x => x.nome == 'vendedor5'))
-                        console.log("existe");
-                    
                 });
         },
         editarVendedor(id) {
@@ -73,7 +74,29 @@ export default {
         },
         ListarPedidosVendedor(id) {
             this.$router.push('/vendedor/pedidos/' + id);
+        },
+        Pesquisar(param)
+        {
+            if(param == '')
+                this.obterVendedores();
+            else
+            {
+                VendedorDataService.listar()
+                    .then(response => {
+                        this.vendedores = [];
+                        for(let vendedor of response.data)
+                        {
+                            if(vendedor.id == param ||
+                                vendedor.nome.toUpperCase().includes(param.toUpperCase()) ||
+                                vendedor.login.toUpperCase().includes(param.toUpperCase()))
+                            {
+                                this.vendedores.push(vendedor)
+                            }
+                        }
+                    });
+            }
         }
+
     },
     mounted() {
         this.obterVendedores();

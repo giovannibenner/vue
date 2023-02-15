@@ -10,6 +10,10 @@
             <h3 class="p-4">Listagem de Serviços</h3>
         </div>
         <hr>
+        <div class="d-flex p-2 justify-content-center" style="width: 100%">
+            <input type="text" class="form-control" v-model="param" placeholder="pesquise por id, nome ou descricao" style="width: 60%;">
+            <button class="btn btn-success" @click="Pesquisar(this.param)" style="margin-left: 0.5rem; width: 20%;">Pesquisar</button>
+        </div>
         <table class="table table-striped">
           <thead class="table-dark">
             <tr>
@@ -41,7 +45,8 @@ import ServicoDataService from '../../services/ServicoDataService';
 export default {
     data() {
         return {
-            servicos: []
+            servicos: [],
+            param: ''
         }
     },
     methods: {
@@ -59,6 +64,27 @@ export default {
             {
                 await ServicoDataService.deletar(servico.id);
                 this.obterServicos();
+            }
+        },
+        Pesquisar(param)
+        {
+            if(param == '')
+                this.obterServicos();
+            else
+            {
+                ServicoDataService.listar()
+                    .then(response => {
+                        this.servicos = [];
+                        for(let servico of response.data)
+                        {
+                            if(servico.id == param ||
+                                servico.nome.toUpperCase().includes(param.toUpperCase()) ||
+                                servico.descricao.toUpperCase().includes(param.toUpperCase()))
+                            {
+                                this.servicos.push(servico)
+                            }
+                        }
+                    });
             }
         }
     },
