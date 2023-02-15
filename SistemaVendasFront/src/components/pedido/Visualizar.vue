@@ -122,7 +122,6 @@ export default {
                 });
         },
         editarItemPedido(id) {
-            console.log(id)
             this.$router.push({name: 'editaritem', params: {id : `${id}`}});
         },
         async excluirItemPedido(itempedido) {

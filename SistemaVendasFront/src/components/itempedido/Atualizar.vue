@@ -72,8 +72,6 @@ export default {
             {
                 ItemPedidoDataService.atualizarPedido(this.itemPedido.id, this.itemPedido)
                 .then(() => {
-                    console.log(this.$route.params.id)
-                    console.log(this.itemPedido.pedidoId)
                         this.$router.push({name: 'pedidos', params: {id: `${this.itemPedido.pedidoId}`}});
                     });
             }
@@ -90,7 +88,6 @@ export default {
             ServicoDataService.listar()
                                 .then(response => {
                                     this.servicos = response.data;
-                                    console.log(this.servicos);
                                 });
         }
     },

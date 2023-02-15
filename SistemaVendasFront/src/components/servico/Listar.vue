@@ -11,7 +11,7 @@
         </div>
         <hr>
         <table class="table table-striped">
-          <thead>
+          <thead class="table-dark">
             <tr>
               <th scope="col" style="width: 10%;">Id</th>
               <th scope="col" style="width: 20%;">Nome</th>

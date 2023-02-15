@@ -10,7 +10,7 @@
         </div>
         <hr>
         <table class="table table-striped">
-          <thead>
+          <thead class="table-dark">
             <tr>
               <th scope="col" style="width: 5%;">Id</th>
               <th scope="col" style="width: 5%;">PedidoId</th>

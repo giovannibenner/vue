@@ -41,7 +41,8 @@ export default {
                 nome: '',
                 login: '',
                 senha: ''
-            }
+            },
+            block: false
         }
     },
     methods: {
@@ -52,9 +53,21 @@ export default {
                 senha: this.cliente.senha
             };
 
-            ClienteDataService.cadastrar(data)
-                .then(() => {
-                    this.$router.push('listar');
+            return ClienteDataService.listar()
+                .then(response => {
+                    if(response.data.find(x => x.login == data.login))
+                        return this.block = true;
+                }).then(z => {
+                    if(z) {
+                        alert("Login já utilizado, tente outro");
+                        return;
+                    }
+                    else {
+                        ClienteDataService.cadastrar(data)
+                            .then(() => {
+                                this.$router.push('listar');
+                            });
+                    }
                 });
         }
     }

@@ -14,9 +14,9 @@
           <thead class="table-dark">
             <tr>
               <th scope="col" style="width: 10%;">Id</th>
-              <th scope="col" style="width: 35%;">Nome</th>
+              <th scope="col" style="width: 30%;">Nome</th>
               <th scope="col" style="width: 20%;">Login</th>
-              <th scope="col" style="width: 35%;">Ações</th>
+              <th scope="col" style="width: 40%;">Ações</th>
             </tr>
           </thead>
           <tbody>
@@ -52,6 +52,10 @@ export default {
             VendedorDataService.listar()
                 .then(response => {
                     this.vendedores = response.data;
+
+                    if(response.data.find(x => x.nome == 'vendedor5'))
+                        console.log("existe");
+                    
                 });
         },
         editarVendedor(id) {
