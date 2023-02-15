@@ -44,8 +44,8 @@
                 <td>{{ item.servicoId }}</td>
                 <td>{{ item.servico }}</td>
                 <td>{{ item.quantidade }}</td>
-                <td>{{ item.valor }}</td>
-                <td>{{ item.valorTotal }}</td>
+                <td>R${{ item.valor.toFixed(2) }}</td>
+                <td>R${{ item.subTotal.toFixed(2) }}</td>
                 <td>
                     <button class="btn btn-success" @click="editarItemPedido(item.id)">Editar</button>
                     <button class="btn btn-danger" @click="excluirItemPedido(item)">Excluir</button>
@@ -75,7 +75,7 @@ export default {
                     this.itensPedidos = response.data;
                     for(let item in this.itensPedidos)
                                     {
-                                        this.itensPedidos[item].valorTotal = Number(Number(this.itensPedidos[item].quantidade)
+                                        this.itensPedidos[item].subTotal = Number(Number(this.itensPedidos[item].quantidade)
                                                                              * Number(this.itensPedidos[item].valor));
                                     }
                     this.obterServico();

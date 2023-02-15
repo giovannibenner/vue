@@ -7,12 +7,14 @@
                 <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
                 <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
             </svg>
-            <h3>Pedido: {{ pedido.id }}</h3>
+            <div style="margin-left: 0.5rem;">
+                <h3>Pedido: {{ pedido.id }}</h3>
+                <h4>Valor Total: R${{ this.valorTotal.toFixed(2) }}</h4>
+            </div>
         </div>
         <hr>
     <div class="form" style="padding: 1%; width: 80%;">
         <h3>Adicionar Item</h3>
-        <hr/>
         <div class="d-flex" style="width: 100%">
             <div style="width: 20%">
                 <label class="form-label">PedidoId</label>
@@ -33,9 +35,9 @@
             <button class="btn btn-success" @click="cadastrarItemPedido" style="margin-top: 4%">Adicionar</button>
         </div>
     </div>
+    <hr>
     <div class="col-8" style="width: 100%;">
         <h3>Itens do Pedido</h3>
-        <hr>
         <table class="table table-striped">
           <thead>
             <tr>
@@ -44,7 +46,7 @@
               <th scope="col">ServicoId</th>
               <th scope="col">Quantidade</th>
               <th scope="col">Valor</th>
-              <th scope="col">Valor Total</th>
+              <th scope="col">Sub Total</th>
               <th scope="col">Ações</th>
             </tr>
           </thead>
@@ -54,8 +56,8 @@
                 <td>{{ itempedido.pedidoId }}</td>
                 <td>{{ itempedido.servicoId }}</td>
                 <td>{{ itempedido.quantidade }}</td>
-                <td>{{ itempedido.valor }}</td>
-                <td>{{ itempedido.valorTotal }}</td>
+                <td>R${{ itempedido.valor }}</td>
+                <td>R${{ itempedido.subTotal.toFixed(2) }}</td>
                 <td>
                     <button class="btn btn-success" @click="editarItemPedido(itempedido.id)">Editar</button>
                     <button class="btn btn-danger" @click="excluirItemPedido(itempedido)">Excluir</button>
@@ -86,7 +88,8 @@ export default {
                 servicoId: '',
                 quantidade: '',
                 valor: ''
-            }
+            },
+            valorTotal: 0
         }
     },
     methods: {
@@ -96,8 +99,10 @@ export default {
                                     this.itensPedidos = response.data;
                                     for(let item in this.itensPedidos)
                                     {
-                                        this.itensPedidos[item].valorTotal = Number(Number(this.itensPedidos[item].quantidade)
+                                        this.itensPedidos[item].subTotal = Number(Number(this.itensPedidos[item].quantidade)
                                                                              * Number(this.itensPedidos[item].valor));
+
+                                        this.valorTotal += Number(this.itensPedidos[item].subTotal);
                                     }
                                  });
         },
@@ -113,7 +118,7 @@ export default {
                 servicoId: this.itemPedido.servicoId,
                 quantidade: this.itemPedido.quantidade,
                 valor: this.itemPedido.valor,
-                valorTotal: Number(Number(this.itemPedido.quantidade) * Number(this.itemPedido.valor))
+                subTotal: Number(Number(this.itemPedido.quantidade) * Number(this.itemPedido.valor))
             };
 
             ItemPedidoDataService.cadastrar(data)

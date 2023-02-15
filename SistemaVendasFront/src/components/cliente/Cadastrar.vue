@@ -53,16 +53,12 @@ export default {
                 senha: this.cliente.senha
             };
 
-            return ClienteDataService.listar()
+            ClienteDataService.listar()
                 .then(response => {
                     if(response.data.find(x => x.login == data.login))
-                        return this.block = true;
-                }).then(z => {
-                    if(z) {
                         alert("Login já utilizado, tente outro");
-                        return;
-                    }
-                    else {
+                    else
+                    {
                         ClienteDataService.cadastrar(data)
                             .then(() => {
                                 this.$router.push('listar');
